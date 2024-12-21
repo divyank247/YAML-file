@@ -1,23 +1,23 @@
 name : cicd pipeline
 job :
-	build :
-		runs-on : ubuntu.latest
-		steps :
-			name checkout
-			uses : action/checkout@v2
-			name setup nodejs
-			uses : action/setup node@v2
-			name install dependencies 
-			run : npm install
-			name runtest
-			run : npm test
-	deploy :
-		needs : build
-		runs-on : ubuntu.latest
-		steps :
-			name checkout code
-			uses : action/checkout@v2
-			name deploy application
-			env :
-				aws_secret_code : {{secret.aws.code}}
-			runs : Run on deploy command over here
+ build :
+  runs-on : ubuntu.latest
+   steps :
+	name checkout
+	uses : action/checkout@v2
+	name setup nodejs
+	uses : action/setup node@v2
+	name install dependencies 
+	run : npm install
+	name runtest
+	run : npm test
+ deploy :
+	needs : build
+	runs-on : ubuntu.latest
+	steps :
+	 name checkout code
+	 uses : action/checkout@v2
+	 name deploy application
+	 env :
+	  aws_secret_code : {{secret.aws.code}}
+	  runs : Run on deploy command over here
